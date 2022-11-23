@@ -1,0 +1,20 @@
+<h4>インデックス</h4>
+
+<%= form_with model: @category, local: true do |f| %>
+  
+  <div>
+    <%= f.label :category_name, "カテゴリー名" %>
+    <%= f.text_field :category_name %>
+  </div>
+  
+  <div>
+    <%= f.submit "作成" %>
+  </div>
+  
+<% end %>
+
+<div>
+  <% @categories.each do |c| %>
+    <p><%= c.category_name %></p>
+  <% end %>
+</div>

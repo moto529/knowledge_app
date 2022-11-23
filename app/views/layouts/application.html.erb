@@ -11,6 +11,8 @@
   </head>
 
   <body>
+    <%= content_tag(:div, flash[:alert], class: "alert alert-danger") if flash[:alert] %>
+    <%= content_tag(:div, flash[:notice], class: "alert alert-success") if flash[:notice] %>
     <%= yield %>
   </body>
 </html>

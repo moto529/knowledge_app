@@ -30,6 +30,19 @@ gem "cssbundling-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+gem "devise"
+
+gem "ransack"
+
+gem "cancancan"
+
+gem "rinku"
+
+gem 'rubocop', require: false
+gem 'rubocop-rails', require: false
+
+gem "rails-i18n"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

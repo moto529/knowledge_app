@@ -8,7 +8,7 @@ class KnowledgesController < ApplicationController
   def create
     @knowledge = Knowledge.new(knowledge_params)
     @knowledge.user = current_user
-    if @knowledge.save!
+    if @knowledge.save
       redirect_to new_knowledge_path
     else
       @knowledges = Knowledge.all

@@ -27,27 +27,3 @@
     
   <% end %>
 </div>
-<div>
-  <table>
-    <thead>
-      <tr>
-        <th>
-          ID
-        </th>
-        <th>
-          タイトル
-        </th>
-        <th>
-          カテゴリー
-        </th>
-      </tr>
-    </thead>
-    <% @knowledges.each do |k| %>
-      <tr>
-        <td><%= k.id %></td>
-        <td><%= k.title %></td>
-        <td><%= k.category.category_name %></td>
-      </tr>
-    <% end %>
-  </table>
-</div>

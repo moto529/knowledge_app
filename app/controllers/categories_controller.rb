@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
+  
   def index
     @category = Category.new
     @categories = Category.all
@@ -8,7 +9,7 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
     if @category.save
-      redirect_to categories_path
+      redirect_to categories_path, notice: "カテゴリーを作成しました。"
     else
       @categories = Category.all
       render "categories/index", status: :unprocessable_entity

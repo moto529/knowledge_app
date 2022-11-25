@@ -1,0 +1,39 @@
+<% if user_signed_in? %>
+  <nav class="navbar navbar-expand navbar-light" style="background-color: #DAF981;">
+    <div class="container-fluid">
+      <%= link_to "My index", "#", class: "navbar-brand py-2 ms-4" %>
+      <ul class="navbar-nav me-auto mb-lg-0">
+        <li class="nav-item">
+          <%= link_to "カテゴリー", categories_path, class: "nav-link active ms-3" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "ナレッジ", knowledges_path, class: "nav-link active ms-3" %>
+        </li>
+      </ul>
+      <div class="d-flex dropdown nav-item">
+        <a class="nav-link dropdown-toggle pe-3", href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <%= image_tag "user.png", class: "bg-lignt me-2" %>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+          <li><%= link_to "ログアウト", users_sign_out_path, class: "dropdown-item" %></li>
+          <li><%= link_to "登録情報", "#", class: "dropdown-item" %></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<% else %>
+  <nav class="navbar navbar-expand navbar-light" style="background-color: #DAF981;">
+    <div class="container-fluid">
+      <div class="navbar-brand py-2 ms-4">My index</div>
+      <div class="d-flex dropdown nav-item">
+        <div>
+          <%- if controller_name != 'sessions' %>
+            <%= link_to "ログイン", new_session_path(resource_name), class: "nav-link me-3" %>
+          <%- elsif devise_mapping.registerable? && controller_name != 'registrations' %>
+            <%= link_to "アカウント作成", new_registration_path(resource_name), class: "nav-link me-3" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </nav>
+<% end %>

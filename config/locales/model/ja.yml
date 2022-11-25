@@ -1,0 +1,17 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      knowledge: ナレッジ
+      category: カテゴリー
+    attributes:
+      category:
+        category_name: カテゴリー名
+      knowledge:
+        title: タイトル
+        body: 説明文
+        url: URL
+        knowledge_image: 写真
+    attributes:
+      created_at: 作成日
+      updated_at: 更新日

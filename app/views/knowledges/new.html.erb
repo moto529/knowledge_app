@@ -1,4 +1,7 @@
 <div>
+  <div>
+    <%= render "layouts/error_messages", model: @knowledge %>
+  </div>
   <%= form_with model: @knowledge, local: true do |f| %>
     
     <div>

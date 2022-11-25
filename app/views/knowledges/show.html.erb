@@ -1,3 +1,8 @@
+<div><%= @knowledge.title %></div>
+<div><%= @knowledge.body %></div>
+<div><%= @knowledge.url %></div>
+<div><%= @knowledge.category.category_name %></div>
+
 <div>
   <%= form_with model: @knowledge, local: true do |f| %>
     
@@ -22,7 +27,7 @@
     </div>
     
     <div>
-      <%= f.submit "作成" %>
+      <%= f.submit "編集" %>
     </div>
     
   <% end %>

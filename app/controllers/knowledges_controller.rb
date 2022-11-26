@@ -34,11 +34,11 @@ class KnowledgesController < ApplicationController
     end
   end
   
-  # def destroy
-  #   @knowledge = Knowledge.find(params[:id])
-  #   @knowledge.destroy
-  #   redirect_to knowledges_path, notice: "削除しました。"
-  # end
+  def destroy
+    @knowledge = Knowledge.find(params[:id])
+    @knowledge.destroy
+    redirect_to knowledges_path, notice: "削除しました。"
+  end
   
   private
   

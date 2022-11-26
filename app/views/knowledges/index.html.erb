@@ -1,12 +1,12 @@
 <div>
-  <% @knowledges.each do |k| %>
-    <div>
-      <%= k.id %>
-      <%= k.title %>
-      <%= k.body %>
-      <%= k.category.category_name %>
-      <%= link_to "show", knowledge_path(k.id) %>
-      <!--<%= link_to "削除", knowledge_path(k.id), data: { turbo_method: :delete, turbo_confirm: "削除しますか?" }, status: :see_other %>-->
-    </div>
+  <%= search_form_for @q, url: knowledges_path do |f| %>
+    <%= f.label :title_cont, 'タイトル検索' %>
+    <%= f.search_field :title_cont %>
+    <%= f.label :body_cont, '本文検索' %>
+    <%= f.search_field :body_cont %>
+    <%= f.submit '検索' %>
   <% end %>
+</div>
+<div>
+  <%= render "layouts/knowledge_search" %>
 </div>

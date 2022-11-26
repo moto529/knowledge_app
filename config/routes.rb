@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   end
   
   resources :categories, only: %i[index create]
-  resources :knowledges, only: %i[index new create show update]
+  resources :knowledges, only: %i[index new create show update destroy]
 end

@@ -5,8 +5,8 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
   
-  resources :categories, only: %i[index create]
-  resources :knowledges, only: %i[index new create show update destroy] do
+  resources :categories, only: %i[index show create]
+  resources :knowledges, except: :edit do
     get 'timeline', on: :collection
   end
 end

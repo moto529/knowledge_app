@@ -7,6 +7,10 @@ class CategoriesController < ApplicationController
     @results = @q.result
   end
   
+  def show
+    @category = Category.find(params[:id])
+  end
+  
   def create
     @category = Category.new(category_params)
     if @category.save

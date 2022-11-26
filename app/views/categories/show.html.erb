@@ -1,0 +1,9 @@
+<div>カテゴリー:<%= @category.category_name %></div>
+<% @category.knowledges.each do |k| %>
+  <div>
+    <div>作成者<%= k.user.name %></div>
+    <div>タイトル:<%= k.title %></div>
+    <div>本文:<%= k.body.truncate(15) %></div>
+    <div>作成:<%= k.created_at.strftime('%Y/%m/%d %H:%M') %></div>
+  </div>
+<% end %>

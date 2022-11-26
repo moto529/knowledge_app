@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
   <nav class="navbar navbar-expand navbar-light" style="background-color: #DAF981;">
     <div class="container-fluid">
-      <%= link_to "My index", "#", class: "navbar-brand py-2 ms-4" %>
+      <%= link_to "My index", root_path, class: "navbar-brand py-2 ms-4" %>
       <ul class="navbar-nav me-auto mb-lg-0">
         <li class="nav-item">
           <%= link_to "カテゴリー", categories_path, class: "nav-link active ms-3" %>

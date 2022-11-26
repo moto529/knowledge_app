@@ -40,6 +40,10 @@ class KnowledgesController < ApplicationController
     redirect_to knowledges_path, notice: "削除しました。"
   end
   
+  def timeline
+    @knowledges = Knowledge.order(created_at: "desc")
+  end
+  
   private
   
   def set_q

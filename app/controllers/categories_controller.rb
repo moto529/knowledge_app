@@ -1,9 +1,10 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_q, only: [:index]
   
   def index
     @category = Category.new
-    @categories = Category.all
+    @results = @q.result
   end
   
   def create
@@ -11,12 +12,16 @@ class CategoriesController < ApplicationController
     if @category.save
       redirect_to categories_path, notice: "カテゴリーを作成しました。"
     else
-      @categories = Category.all
+      @results = @q.result
       render "categories/index", status: :unprocessable_entity
     end
   end
   
   private
+  
+  def set_q
+    @q = Category.ransack(params[:q])
+  end
   
   def category_params
     params.require(:category).permit(:category_name)

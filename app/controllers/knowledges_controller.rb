@@ -1,8 +1,9 @@
 class KnowledgesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_q, only: [:index]
   
   def index
-    @knowledges = Knowledge.where(user_id: current_user.id).order(created_at: "desc")
+    @knowledges = @q.result.where(user_id: current_user.id).order(created_at: "desc")
   end
   
   def new
@@ -40,6 +41,10 @@ class KnowledgesController < ApplicationController
   # end
   
   private
+  
+  def set_q
+    @q = Knowledge.ransack(params[:q])
+  end
   
   def knowledge_params
     params.require(:knowledge).permit(:title, :body, :url, :category_id)

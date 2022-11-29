@@ -1,9 +1,0 @@
-<% @knowledges.each do |k| %>
-  <div>
-    <%= k.id %>
-    <%= k.title %>
-    <%= k.category.category_name %>
-    <%= link_to "show", knowledge_path(k.id) %>
-    <%= link_to "削除", knowledge_path(k.id), data: { turbo_method: :delete, turbo_confirm: "削除しますか?" }, status: :see_other %>
-  </div>
-<% end %>

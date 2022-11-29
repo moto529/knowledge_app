@@ -28,7 +28,7 @@ class KnowledgesController < ApplicationController
   def update
     @knowledge = Knowledge.find(params[:id])
     if @knowledge.update(knowledge_params)
-      redirect_to knowledges_path, notice: 'ナレッジを編集しました。'
+      redirect_to knowledge_path, notice: 'ナレッジを編集しました。'
     else
       render 'knowledges/show', status: :unprocessable_entity
     end

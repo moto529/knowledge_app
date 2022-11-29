@@ -1,32 +1,38 @@
-<div>
-  <div>
-    <%= render "layouts/error_messages", model: @knowledge %>
+<div class="row">
+    <div class="row border-bottom border-dark">
+      <div class="offset-4 col-3 my-1 mt-3"><%= link_to "index", knowledges_path, class: "text-decoration-none link-dark" %></div>
+      <div class="col-3 my-2 mt-3"><%= link_to "new", new_knowledge_path, class: "text-decoration-none link-dark" %></div>
+    </div>
+  <div class="card offset-3 col-6 shadow-lg mt-5">
+     <div class="text-danger text-center mt-4">
+      <%= render "layouts/error_messages", model: @knowledge %>
+    </div>
+    <%= form_with model: @knowledge, local: true do |f| %>
+      <div class="row">  
+        <div class="offset-2 col-8">
+          <%= f.label :title, "タイトル", class: "form-label" %><br>
+          <%= f.text_field :title, class: "form-control" %>
+        </div>
+        
+        <div class="offset-2 col-8 mt-1">
+          <%= f.label :body, "説明", class: "form-label" %><br>
+          <%= f.text_area :body, class: "form-control" %>
+        </div>
+        
+        <div class="offset-2 col-8 mt-1">
+          <%= f.label :url, "URL", class: "form-label" %><br>
+          <%= f.text_area :url, class: "form-control" %>
+        </div>
+        
+        <div class="offset-2 col-8 mt-1">
+          <%= f.label :category_id, "カテゴリー", class: "form-label" %><br>
+          <%= f.collection_select :category_id, Category.all, :id, :category_name, { prompt: '選択してください' }, class: "form-select" %>
+        </div>
+        
+        <div class="text-center mt-3 mb-4">
+          <%= f.submit "Create", class: "btn btn-outline-success" %>
+        </div>
+      </div>
+    <% end %>
   </div>
-  <%= form_with model: @knowledge, local: true do |f| %>
-    
-    <div>
-      <%= f.label :title, "タイトル" %><br>
-      <%= f.text_field :title %>
-    </div>
-    
-    <div>
-      <%= f.label :body, "本文" %><br>
-      <%= f.text_area :body %>
-    </div>
-    
-    <div>
-      <%= f.label :url, "URL" %><br>
-      <%= f.text_area :url %>
-    </div>
-    
-    <div>
-      <%= f.label :category_id, "カテゴリー" %><br>
-      <%= f.collection_select :category_id, Category.all, :id, :category_name, { prompt: '選択してください' } %>
-    </div>
-    
-    <div>
-      <%= f.submit "作成" %>
-    </div>
-    
-  <% end %>
 </div>

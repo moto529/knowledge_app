@@ -4,10 +4,10 @@
       <%= link_to "My index", root_path, class: "navbar-brand py-2 ms-4" %>
       <ul class="navbar-nav me-auto mb-lg-0">
         <li class="nav-item">
-          <%= link_to "カテゴリー", categories_path, class: "nav-link active ms-3" %>
+          <%= link_to "Category", categories_path, class: "nav-link active ms-3" %>
         </li>
         <li class="nav-item">
-          <%= link_to "ナレッジ", knowledges_path, class: "nav-link active ms-3" %>
+          <%= link_to "Knowledge", knowledges_path, class: "nav-link active ms-3" %>
         </li>
       </ul>
       <div class="d-flex dropdown nav-item">
@@ -15,8 +15,9 @@
           <%= image_tag "user.png", class: "bg-lignt me-2" %>
         </a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-          <li><%= link_to "ログアウト", users_sign_out_path, class: "dropdown-item" %></li>
+          <li><%= link_to "プロフィール", profile_user_path(current_user.id), class: "dropdown-item" %></li>
           <li><%= link_to "登録情報編集", edit_user_registration_path, class: "dropdown-item" %></li>
+          <li><%= link_to "ログアウト", users_sign_out_path, class: "dropdown-item" %></li>
         </ul>
       </div>
     </div>

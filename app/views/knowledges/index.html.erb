@@ -1,22 +1,20 @@
 <div class="row">
+  <div class="row border-bottom border-dark">
+    <div class="offset-4 col-3 my-1 mt-3"><%= link_to "index", knowledges_path, class: "text-decoration-none link-dark" %></div>
+    <div class="col-3 my-2 mt-3"><%= link_to "new", new_knowledge_path, class: "text-decoration-none link-dark" %></div>
+  </div>
+  <div class="mt-3">
+    <%= search_form_for @q, url: knowledges_path do |f| %>
+      <div class="row">
+        <div class="offset-2 col-1 mt-1"><%= f.label :title_cont, 'タイトル検索', class: "form-label" %></div>
+        <div class="col-2"><%= f.search_field :title_cont, class: "form-control border-dark" %></div>
+        <div class="col-1 mt-1"><%= f.label :body_cont, '本文検索', class: "form-label ms-4" %></div>
+        <div class="col-2"><%= f.search_field :body_cont, class: "form-control border-dark" %></div>
+        <div class="col-1 mt-1 ms-4"><%= f.submit 'Search', class: "btn btn-outline-dark btn-sm" %></div>
+      </div>
+    <% end %>
+  </div>
   <div>
-    <div class="row border-bottom border-dark">
-      <div class="offset-4 col-3 my-1 mt-3"><%= link_to "index", knowledges_path, class: "text-decoration-none link-dark" %></div>
-      <div class="col-3 my-2 mt-3"><%= link_to "new", new_knowledge_path, class: "text-decoration-none link-dark" %></div>
-    </div>
-    <div class="mt-3">
-      <%= search_form_for @q, url: knowledges_path do |f| %>
-        <div class="row">
-          <div class="offset-2 col-1 mt-1"><%= f.label :title_cont, 'タイトル検索', class: "form-label" %></div>
-          <div class="col-2"><%= f.search_field :title_cont, class: "form-control border-dark" %></div>
-          <div class="col-1 mt-1"><%= f.label :body_cont, '本文検索', class: "form-label ms-4" %></div>
-          <div class="col-2"><%= f.search_field :body_cont, class: "form-control border-dark" %></div>
-          <div class="col-1 mt-1 ms-4"><%= f.submit 'Search', class: "btn btn-outline-dark btn-sm" %></div>
-        </div>
-      <% end %>
-    </div>
-    <div>
-      <%= render "knowledge_search" %>
-    </div>
+    <%= render "knowledge_search" %>
   </div>
 </div>

@@ -11,8 +11,9 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[show] do
     resources :relationships, only: [:create, :destroy]
-    get 'followings' => 'relationships#followings', as: 'followings'
-    get 'followers' => 'relationships#followers', as: 'followers'
+    get 'profile', on: :member
+    get 'followings' => 'relationships#followings'
+    get 'followers' => 'relationships#followers'
   end
   resources :categories, only: %i[index show create]
   resources :knowledges, except: :edit do

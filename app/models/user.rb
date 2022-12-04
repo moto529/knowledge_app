@@ -7,6 +7,8 @@ class User < ApplicationRecord
   
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
+  
+  validates :introduction, presence: false, length: { maximum: 150 }
 
   # フォローした時の処理
   def follow(user_id)

@@ -1,9 +1,12 @@
 <div class="row">
   <div class="card offset-3 col-6 shadow-lg mt-5">
+    <div class="text-danger text-center mt-4">
+      <%= render "layouts/error_messages", model: @user %>
+    </div>
     <%= form_with model: @user, local: true do |f| %>
       <div class="row">  
         
-        <div class="offset-2 col-8 mt-3">
+        <div class="offset-2 col-8">
           <%= f.label :introduction, "プロフィール文", class: "form-label" %><br>
           <%= f.text_area :introduction, class: "form-control", rows:"4" %>
         </div>

@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     if @user.update(user_params_update)
       redirect_to profile_user_path, notice: 'プロフィールを保存しました。'
     else
-      render "users/edit"
+      render "users/edit", status: :unprocessable_entity
     end
   end
   

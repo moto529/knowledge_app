@@ -3,7 +3,7 @@ class KnowledgesController < ApplicationController
   before_action :set_q, only: [:index]
 
   def index
-    @knowledges = @q.result.where(user_id: current_user.id).order(created_at: 'desc')
+    @knowledges = @q.result.where(user_id: [current_user.id, *current_user.following_ids]).order(created_at: 'desc')
   end
 
   def new

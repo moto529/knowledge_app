@@ -6,14 +6,14 @@
       プロフィール情報
     </div>
   </div>
-  <div class="card offset-3 col-6 shadow-lg my-3">
+  <div class="card offset-3 col-6 shadow-lg my-4">
     <%= search_form_for @q, url: profile_user_path do |f| %>
-      <div class="row mt-3">
-        <div class="col-2 mt-2"><span class="offset-7"><%= f.label :title_cont, 'タイトル検索', class: "form-label" %></span></div>
-        <div class="offset-1 col-3 mt-1"><%= f.search_field :title_cont, class:"form-control border-dark" %></div>
-        <div class="col-2 mt-2"><span class="offset-3"><%= f.label :body_cont, '本文検索', class: "form-label" %></span></div>
-        <div class="col-3 mt-1 mb-1"><%= f.search_field :body_cont, class:"form-control border-dark" %></div>
-        <div class="text-center mt-2"><%= f.submit 'Search', class: "btn btn-outline-dark btn-sm mb-3" %></div>
+      <div class="row">
+        <div class="mt-2 offset-3"><%= f.label :title_cont, 'タイトル検索', class: "form-label" %></div>
+        <div class="offset-3 col-6"><%= f.search_field :title_cont, class:"form-control border-dark" %></div>
+        <div class="mt-2 offset-3"><%= f.label :body_cont, '本文検索', class: "form-label" %></div>
+        <div class="offset-3 col-6"><%= f.search_field :body_cont, class:"form-control border-dark" %></div>
+        <div class="mt-2 text-center"><%= f.submit 'Search', class: "btn btn-outline-dark btn-sm mb-3" %></div>
       </div>
     <% end %>
   </div>

@@ -1,11 +1,12 @@
 <div class="row">
   <% @knowledges.each do |k| %>
-    <%= link_to knowledge_path(k.id), class: "text-decoration-none card offset-3 col-6 mt-5 mb-2 shadow-lg btn text-start" ,style: "height: 150px;" do %>
+    <%= link_to knowledge_path(k.id), class: "text-decoration-none card offset-3 col-6 mt-5 mb-2 shadow-lg btn text-start" do %>
       <div class="row">
         <div class="mt-2 ms-2 col-5 fw-bolder text-dark"><%= k.title %></div>
         <div class="text-end col-7 fw-light text-secondary" style="font-size: 14px;"><span class="position-absolute top-0 end-0 mt-3 me-4"><%= k.category.category_name %></span></div>
         <div class="mt-4 offset-1 mb-2 col-10 text-truncate text-dark"><%= k.body %></div>
-        <div class="text-secondary text-end mt-4"><%= k.created_at.strftime('%Y/%m/%d %H:%M') %></div>
+        <div class="text-primary text-end"><%= k.user.name %>さん</div>
+        <div class="text-secondary text-end"><%= k.created_at.strftime('%Y/%m/%d %H:%M') %></div>
       </div>
     <% end %>
   <% end %>

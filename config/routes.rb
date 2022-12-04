@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
 
-  resources :users, only: %i[show] do
+  resources :users, only: %i[show edit update] do
     resources :relationships, only: [:create, :destroy]
     get 'profile', on: :member
     get 'followings' => 'relationships#followings'

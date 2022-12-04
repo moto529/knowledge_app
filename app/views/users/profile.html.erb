@@ -3,7 +3,12 @@
     <div class="fw-bolder mt-2"><%= @user.name %><%= render "relationships/follow_list" %></div>
     <div class="mt-2 col-5">Birthday : <%= @user.birth_date.strftime("%Y年%m月%d日") %></div>
     <div class="mt-3 mb-3">
-      プロフィール情報
+      <% if @user.introduction.nil? %>
+        <div><%= @user.introduction %></div>
+      <% else %>
+        <div><%= safe_join(@user.introduction.split("\n"),tag(:br)) %></div>
+      <% end %>
+      <%= link_to "プロフィール作成", edit_user_path(@user.id) %>
     </div>
   </div>
   <div class="card offset-3 col-6 shadow-lg my-4">

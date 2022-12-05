@@ -4,9 +4,14 @@
       <%= render "layouts/error_messages", model: @user %>
     </div>
     <%= form_with model: @user, local: true do |f| %>
-      <div class="row">  
-        
+      <div class="row">
+      
         <div class="offset-2 col-8">
+          <%= f.label :profile_image, "プロフィール画像", class: "form-label" %>
+          <%= f.file_field :profile_image, class: "form-control" %>
+        </div>
+        
+        <div class="offset-2 col-8 mt-2">
           <%= f.label :introduction, "プロフィール文", class: "form-label" %><br>
           <%= f.text_area :introduction, class: "form-control", rows:"4" %>
         </div>

@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
   
+  mount_uploader :profile_image, ProfileImageUploader
+  
   validates :introduction, presence: false, length: { maximum: 150 }
 
   # フォローした時の処理

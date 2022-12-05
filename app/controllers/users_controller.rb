@@ -9,6 +9,19 @@ class UsersController < ApplicationController
     end
   end
   
+  def edit
+    @user = User.find(params[:id])
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params_update)
+      redirect_to profile_user_path, notice: 'プロフィールを保存しました。'
+    else
+      render "users/edit", status: :unprocessable_entity
+    end
+  end
+  
   def profile
     @user_knowledges = @q.result.order(created_at: 'desc')
   end
@@ -17,5 +30,9 @@ class UsersController < ApplicationController
   def set_q
     @user = User.find(params[:id])
     @q = @user.knowledges.ransack(params[:q])
+  end
+  
+  def user_params_update
+    params.require(:user).permit(:introduction)
   end
 end

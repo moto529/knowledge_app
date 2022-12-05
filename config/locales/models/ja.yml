@@ -3,6 +3,8 @@ ja:
     models:
       user: ユーザー
     attributes:
+      user:
+        introduction: プロフィール文
       category:
         category_name: カテゴリー名
       knowledge:

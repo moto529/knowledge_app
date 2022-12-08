@@ -1,20 +1,20 @@
-<button class="btn btn-sm btn-outline-primary ms-3" data-bs-toggle="collapse" href="#followCollapse" role="button" aria-expanded="false" aria-controls="followCollapse">
+<button class="btn btn-sm btn-outline-primary ms-3 fw-bolder" data-bs-toggle="collapse" href="#followCollapse" role="button" aria-expanded="false" aria-controls="followCollapse">
   Follow: <%= @user.followings.count %>
 </button>
-<button class="btn btn-sm btn-outline-primary ms-3" data-bs-toggle="collapse" href="#followCollapse" role="button" aria-expanded="false" aria-controls="followCollapse">
+<button class="btn btn-sm btn-outline-primary ms-3 fw-bolder" data-bs-toggle="collapse" href="#followCollapse" role="button" aria-expanded="false" aria-controls="followCollapse">
   Follower: <%= @user.followers.count %>
 </button>
 <div class="collapse row mt-4" id="followCollapse">
-  <div class="offset-2 col-3 text-center">
-    <span class="text-primary">Follow</span>
+  <div class="offset-3 col-4">
+    <span class="mb-1">Follow</span>
     <% @user.followings.each do |following| %>
-      <div><%= link_to following.name, user_path(following.id), class: "text-decoration-none btn" %></div>
+      <div class="mb-2"><%= link_to following.name, user_path(following.id), class: "text-decoration-none" %></div>
     <% end %>
   </div>
-  <div class="col-7 text-center">
-    <span class="text-primary">Follower</span>
+  <div class="col-4">
+    <span class="mb-1">Follower</span>
     <% @user.followers.each do |follower| %>
-      <div><%= link_to follower.name, user_path(follower.id), class: "text-decoration-none btn" %></div>
+      <div class="mb-2"><%= link_to follower.name, user_path(follower.id), class: "text-decoration-none" %></div>
     <% end %>
   </div>
 </div>

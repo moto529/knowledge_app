@@ -30,7 +30,6 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
-/config/initializers/carrierwave.rb
 
 /app/assets/builds/*
 !/app/assets/builds/.keep

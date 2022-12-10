@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'relationships/followings'
-  get 'relationships/followers'
   root to: 'knowledges#timeline'
   devise_for :users, controllers: {
     registrations: "users/registrations",
@@ -14,9 +12,11 @@ Rails.application.routes.draw do
     get 'profile', on: :member
     get 'followings' => 'relationships#followings'
     get 'followers' => 'relationships#followers'
+    get :favorite, on: :collection
   end
   resources :categories, only: %i[index show create]
   resources :knowledges, except: :edit do
     get 'timeline', on: :collection
   end
+  resources :favorites, only: %i[create destroy]
 end

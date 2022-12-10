@@ -23,7 +23,11 @@ class UsersController < ApplicationController
   end
   
   def profile
-    @user_knowledges = @q.result.order(created_at: 'desc')
+    @knowledges = @q.result.order(created_at: 'desc')
+  end
+  
+  def favorite
+    @knowledges = current_user.favorite_knowledges.includes(:user).order(created_at: 'desc')
   end
   
   private

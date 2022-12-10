@@ -1,12 +1,15 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
        :recoverable, :rememberable, :validatable
-  has_many :knowledges
+  has_many :knowledges, dependent: :destroy
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
+  
+  has_many :favorites,  dependent: :destroy
+  has_many :favorite_knowledges, through: :favorites, source: :knowledge
   
   mount_uploader :profile_image, ProfileImageUploader
   
@@ -23,5 +26,17 @@ class User < ApplicationRecord
   # フォローしているか判定
   def following?(user)
     followings.include?(user)
+  end
+  
+  def favorite(knowledge)
+    favorite_knowledges << knowledge
+  end
+  
+  def unfaborite(knowledge)
+    favorite_knowledges.destroy(knowledge)
+  end
+  
+  def favorite?(knowledge)
+    favorite_knowledges.include?(knowledge)
   end
 end

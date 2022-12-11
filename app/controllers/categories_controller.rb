@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
 
   def index
     @category = Category.new
-    @results = @q.result
+    @results = @q.result.page(params[:page]).per(20)
   end
   
   def new
@@ -13,6 +13,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.find(params[:id])
+    @knowledges = @category.knowledges.page(params[:page])
   end
 
   def create

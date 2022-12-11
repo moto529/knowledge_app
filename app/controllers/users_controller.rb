@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :set_q, only: [:profile]
   def show
     @user = User.find(params[:id])
-    @knowledges = @user.knowledges.order(created_at: 'desc')
+    @knowledges = @user.knowledges.order(created_at: 'desc').page(params[:page])
     if @user.id == current_user.id
       redirect_to profile_user_path
     end
@@ -23,11 +23,11 @@ class UsersController < ApplicationController
   end
   
   def profile
-    @knowledges = @q.result.order(created_at: 'desc')
+    @knowledges = @q.result.order(created_at: 'desc').page(params[:page])
   end
   
   def favorite
-    @knowledges = current_user.favorite_knowledges.includes(:user).order(created_at: 'desc')
+    @knowledges = current_user.favorite_knowledges.includes(:user).order(created_at: 'desc').page(params[:page])
   end
   
   private

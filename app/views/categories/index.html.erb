@@ -35,5 +35,8 @@
     <div>
       <%= render "category_search" %>
     </div>
+    <div class="offset-lg-5 offset-4 mt-4">
+      <%= paginate @results, theme: 'bootstrap-5' %>
+    </div>
   </div>
 </div>

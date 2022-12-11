@@ -1,20 +1,21 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_user, only: %i[show edit update profile set_q]
   before_action :set_q, only: [:profile]
   def show
-    @user = User.find(params[:id])
-    @knowledges = @user.knowledges.order(created_at: 'desc').page(params[:page])
-    if @user.id == current_user.id
+    @user_knowledges = @user.knowledges.order(created_at: 'desc').page(params[:page])
+    if @user == current_user
       redirect_to profile_user_path
     end
   end
   
   def edit
-    @user = User.find(params[:id])
+    if current_user != @user
+      redirect_to profile_user_path, alert: '自分以外のプロフィールは作成できません。'
+    end
   end
   
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params_update)
       redirect_to profile_user_path, notice: 'プロフィールを保存しました。'
     else
@@ -23,17 +24,24 @@ class UsersController < ApplicationController
   end
   
   def profile
-    @knowledges = @q.result.order(created_at: 'desc').page(params[:page])
+    if current_user != @user
+      redirect_to user_path
+    else
+      @profile_knowledges = @q.result.order(created_at: 'desc').page(params[:page])
+    end
   end
   
   def favorite
-    @knowledges = current_user.favorite_knowledges.includes(:user).order(created_at: 'desc').page(params[:page])
+    @favorites = current_user.favorite_knowledges.includes(:user).order(created_at: 'desc').page(params[:page])
   end
   
   private
   def set_q
-    @user = User.find(params[:id])
     @q = @user.knowledges.ransack(params[:q])
+  end
+  
+  def set_user
+    @user = User.find(params[:id])
   end
   
   def user_params_update

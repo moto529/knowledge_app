@@ -1,14 +1,10 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_q, only: [:index, :create]
+  before_action :set_q, only: %i[index create]
 
   def index
     @category = Category.new
-    @results = @q.result.page(params[:page]).per(20)
-  end
-  
-  def new
-    @category = Category.new
+    @categories = @q.result.page(params[:page]).per(30)
   end
 
   def show

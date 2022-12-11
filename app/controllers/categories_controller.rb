@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_q, only: %i[index create]

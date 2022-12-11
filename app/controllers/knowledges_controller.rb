@@ -1,10 +1,13 @@
+# frozen_string_literal: true
+
 class KnowledgesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_knowledge, only: %i[show update destroy]
   before_action :set_q, only: [:index]
 
   def index
-    @knowledges = @q.result.where(user_id: [current_user.id, *current_user.following_ids]).order(created_at: 'desc').page(params[:page])
+    @knowledges = @q.result.where(user_id: [current_user.id,
+                                            *current_user.following_ids]).order(created_at: 'desc').page(params[:page])
   end
 
   def new
@@ -22,7 +25,7 @@ class KnowledgesController < ApplicationController
     end
   end
 
-  def show;end
+  def show; end
 
   def update
     if @knowledge.update(knowledge_params)
@@ -46,7 +49,7 @@ class KnowledgesController < ApplicationController
   def set_q
     @q = Knowledge.ransack(params[:q])
   end
-  
+
   def set_knowledge
     @knowledge = Knowledge.find(params[:id])
   end

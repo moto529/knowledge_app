@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 categories = [
   { category_name: 'サッカー' },
   { category_name: '日本史' },

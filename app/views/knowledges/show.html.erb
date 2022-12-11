@@ -9,7 +9,7 @@
           <%= link_to '＋❤️', favorites_path(knowledge_id: @knowledge.id), id: "js-bookmark-button-for-knowledge-#{@knowledge.id}", data: { turbo_method: :post }, class: "text-decoration-none" %>
         <% end %>
       </div>
-      <div class="mt-3 text-end col-7 fw-light text-secondary"><span class="position-absolute top-0 end-0 mt-3 me-4"><%= @knowledge.category.category_name %></span></div>
+      <div class="mt-3 col-7 fw-light"><span class="position-absolute top-0 end-0 mt-3 me-4"><%= link_to @knowledge.category.category_name, category_path(@knowledge.category.id), class: "link-secondary text-decoration-none" %></span></div>
       <div class="mt-3"><%= @knowledge.body %></div>
       <div class="mt-3 mb-4"><%= raw Rinku.auto_link(@knowledge.url, :all, 'target="_blank"') %></div>
       <div class="text-end text-secondary"><%= @knowledge.created_at.strftime('%Y/%m/%d %H:%M') %></div>
@@ -29,33 +29,7 @@
       <div class="text-danger text-center mt-4">
         <%= render "layouts/error_messages", model: @knowledge %>
       </div>
-      <%= form_with model: @knowledge, local: true do |f| %>
-        <div class="row">
-          <div class="offset-2 col-8 mt-3">
-            <%= f.label :title, "タイトル", class: "form-label" %><br>
-            <%= f.text_field :title, class: "form-control" %>
-          </div>
-        
-          <div class="offset-2 col-8 mt-2">
-            <%= f.label :body, "本文", class: "form-label" %><br>
-            <%= f.text_area :body, class: "form-control", rows: 4 %>
-          </div>
-          
-          <div class="offset-2 col-8 mt-2">
-            <%= f.label :url, "URL", class: "form-label" %><br>
-            <%= f.text_area :url, class: "form-control", rows: 3 %>
-          </div>
-          
-          <div class="offset-2 col-8 mt-2">
-            <%= f.label :category_id, "カテゴリー", class: "form-label" %><br>
-            <%= f.collection_select :category_id, Category.all, :id, :category_name, { prompt: '選択してください' }, class: "form-select" %>
-          </div>
-          
-          <div class="mt-3 mb-2 text-center">
-            <%= f.submit "Edit", class: "btn btn-outline-success col-3" %>
-          </div>
-        </div>
-      <% end %>
+      <%= render "knowledge_form" %>
       <div class="text-center mt-2 mb-5">
         <%= link_to "Delete", knowledge_path(@knowledge.id), data: { turbo_method: :delete, turbo_confirm: "削除しますか?" }, status: :see_other, class: "btn btn-outline-danger col-3" %>
       </div>

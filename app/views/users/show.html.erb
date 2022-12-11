@@ -26,9 +26,9 @@
     <div class="mb-3"><%= render "relationships/follow_list" %></div>
   </div>
   <div>
-    <%= render "knowledge" %>
+    <%= render partial: "knowledge", collection: @user_knowledges %>
   </div>
   <div class="offset-lg-5 offset-4 mt-4">
-    <%= paginate @knowledges, theme: 'bootstrap-5' %>
+    <%= paginate @user_knowledges, theme: 'bootstrap-5' %>
   </div>
 </div>

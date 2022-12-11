@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -44,13 +46,13 @@ gem 'rubocop-rails', require: false
 gem 'rails-i18n'
 
 gem 'carrierwave'
-gem 'mini_magick'
 gem 'fog-aws'
+gem 'mini_magick'
 
 gem 'dotenv-rails'
 
-gem 'kaminari'
 gem 'bootstrap5-kaminari-views'
+gem 'kaminari'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"

@@ -1,13 +1,6 @@
 <div class="row">
   <div class="text-center offset-1 col-10 mt-3 py-1 bg-white border rounded shadow-lg fw-bolder"><%= @category.category_name %></div>
-  <% @knowledges.each do |k| %>
-    <%= link_to knowledge_path(k.id),class: "card offset-3 col-6 shadow-lg text-decoration-none mt-5 mb-2 btn text-start" do %>
-      <div class="mt-2 ms-3 col-5 text-dark fw-bolder"><%= k.title %></div>
-      <div class="mt-2 text-dark"><%= k.body %></div>
-      <div class="text-secondary text-end mt-1"><%= k.created_at.strftime('%Y/%m/%d %H:%M') %></div>
-      <div class="text-end my-1"><span class="text-primary"><%= k.user.name %></span></div>
-    <% end %>
-  <% end %>
+  <%= render "knowledges/knowledges" %>
   <div class="offset-lg-5 offset-4 mt-4">
     <%= paginate @knowledges, theme: 'bootstrap-5' %>
   </div>

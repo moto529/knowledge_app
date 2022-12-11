@@ -31,9 +31,9 @@
     <% end %>
   </div>
   <div>
-    <%= render "knowledge" %>
+    <%= render partial: "knowledge", collection: @profile_knowledges %>
   </div>
   <div class="offset-lg-5 offset-4 mt-4">
-    <%= paginate @knowledges, theme: 'bootstrap-5' %>
+    <%= paginate @profile_knowledges, theme: 'bootstrap-5' %>
   </div>
 </div>

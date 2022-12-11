@@ -1,5 +1,5 @@
 <h5 class="offset-3 col-6 mt-4 fw-bolder text-primary mb-3"><span class="ms-3">お気に入りリスト</span></h5>
-<%= render "knowledge" %>
+<%= render partial: "knowledge", collection: @favorites %>
 <div class="offset-lg-5 offset-4 mt-4">
-  <%= paginate @knowledges, theme: 'bootstrap-5' %>
+  <%= paginate @favorites, theme: 'bootstrap-5' %>
 </div>

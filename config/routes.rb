@@ -21,4 +21,6 @@ Rails.application.routes.draw do
     get 'timeline', on: :collection
   end
   resources :favorites, only: %i[create destroy]
+  
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

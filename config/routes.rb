@@ -3,7 +3,8 @@
 Rails.application.routes.draw do
   root to: 'knowledges#timeline'
   devise_for :users, controllers: {
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
+    omniauth_callbacks: 'omniauth_callbacks'
   }
   devise_scope :user do
     get '/users/sign_out' => 'devise/sessions#destroy'

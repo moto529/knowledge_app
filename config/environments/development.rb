@@ -75,5 +75,5 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
   config.hosts << 'f06af84733f84d3da3940388cd592475.vfs.cloud9.ap-northeast-1.amazonaws.com'
-  # config.hosts << '' ngrokを起動してから記述
+  # config.hosts << 'https://6aa6-54-250-76-109.ngrok.io ' ngrokを起動してから記述
 end

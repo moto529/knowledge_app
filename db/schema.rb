@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_12_114354) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_14_102352) do
   create_table "categories", charset: "utf8mb4", force: :cascade do |t|
     t.string "category_name"
     t.datetime "created_at", null: false
@@ -35,6 +35,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_12_114354) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "user_uid"
     t.index ["category_id"], name: "index_knowledges_on_category_id"
     t.index ["user_id"], name: "index_knowledges_on_user_id"
   end

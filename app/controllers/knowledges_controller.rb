@@ -6,8 +6,7 @@ class KnowledgesController < ApplicationController
   before_action :set_q, only: [:index]
 
   def index
-    @knowledges = @q.result.where(user_id: [current_user.id,
-                                            *current_user.following_ids]).order(created_at: 'desc').page(params[:page])
+    @knowledges = @q.result.where(user_id: [current_user.id, *current_user.following_ids]).order(created_at: 'desc').page(params[:page])
   end
 
   def new
@@ -16,7 +15,8 @@ class KnowledgesController < ApplicationController
 
   def create
     @knowledge = Knowledge.new(knowledge_params)
-    @knowledge.user = current_user
+    @knowledge.user_id = current_user.id
+    @knowledge.user_uid = current_user.uid
     if @knowledge.save
       redirect_to knowledges_path, notice: 'ナレッジを作成しました。'
     else

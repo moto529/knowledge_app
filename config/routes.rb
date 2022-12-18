@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     get :favorite, on: :collection
   end
   resources :categories, only: %i[index show create]
-  resources :knowledges, except: :edit do
+  resources :knowledges do
     get 'timeline', on: :collection
   end
   resources :favorites, only: %i[create destroy]

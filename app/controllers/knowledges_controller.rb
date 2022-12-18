@@ -2,7 +2,7 @@
 
 class KnowledgesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_knowledge, only: %i[show update destroy]
+  before_action :set_knowledge, only: %i[show edit update destroy]
   before_action :set_q, only: [:index]
 
   def index
@@ -26,18 +26,28 @@ class KnowledgesController < ApplicationController
   end
 
   def show; end
+    
+  def edit
+    if current_user != @knowledge.user
+      redirect_back fallback_location: knowledge_path, notice: "ページを閲覧する権限がありません"
+    end
+  end
 
   def update
     if @knowledge.update(knowledge_params)
       redirect_to knowledge_path, notice: 'ナレッジを編集しました。'
     else
-      render 'knowledges/show', status: :unprocessable_entity
+      render 'knowledges/edit', status: :unprocessable_entity
     end
   end
 
   def destroy
-    @knowledge.destroy
-    redirect_to knowledges_path, notice: '削除しました。'
+    if current_user != @knowledge.user
+      redirect_back fallback_location: knowledge_path, notice: "削除できません"
+    else
+      @knowledge.destroy
+      redirect_to knowledges_path, notice: '削除しました。'
+    end
   end
 
   def timeline

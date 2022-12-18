@@ -25,12 +25,9 @@
     </div>
   </div>
   <% if @knowledge.user == current_user %>
-    <div class="card offset-2 col-8 shadow-lg mt-3 mb-5">
-      <div class="text-danger text-center mt-4">
-        <%= render "layouts/error_messages", model: @knowledge %>
-      </div>
-      <%= render "knowledge_form" %>
-      <div class="text-center mt-2 mb-5">
+    <div class="row card offset-3 col-6 shadow-lg mt-3 mb-5">
+      <div class="text-center my-3">
+        <%= link_to "Edit", edit_knowledge_path(@knowledge.id), class: "btn btn-outline-success col-3 me-3" %>
         <%= link_to "Delete", knowledge_path(@knowledge.id), data: { turbo_method: :delete, turbo_confirm: "削除しますか?" }, status: :see_other, class: "btn btn-outline-danger col-3" %>
       </div>
     </div>

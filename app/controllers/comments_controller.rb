@@ -17,7 +17,11 @@ class CommentsController < ApplicationController
     end
   end
   
-  def edit; end
+  def edit
+    if @comment.user != current_user
+      redirect_to knowledge_path(@knowledge), alert: "ページを閲覧する権限がありません"
+    end
+  end
   
   def update
     if @comment.update(comment_params)

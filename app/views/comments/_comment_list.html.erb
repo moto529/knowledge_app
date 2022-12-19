@@ -1,0 +1,21 @@
+<div class="card shadow-lg offset-3 col-6 mt-3 mb-3">
+  <div class="col-3 mt-2"><%= link_to "コメント作成", new_knowledge_comment_path(@knowledge), class: "text-decoration-none" %></div>
+  <% @comments.each do |c| %>
+    <div class="row">
+      <div class="mt-3 col-11">
+        <%= c.comment %>
+      </div>
+      <% if c.user == current_user %>
+        <div class="dropdown col-1">
+          <a class="text-decoration-none fw-bold link-dark" type="button" id="comment_dropdown" data-bs-toggle="dropdown" aria-expanded="false">...</a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="comment_dropdown">
+            <li><%= link_to "edit", edit_knowledge_comment_path(@knowledge, c), class: "dropdown-item" %></li>
+            <li><%= link_to "delete", knowledge_comment_path(@knowledge, c), data: { turbo_method: :delete, turbo_confirm: "コメントを削除しますか?" }, class: "dropdown-item" %></li>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+    <div class="text-end mt-1"><%= link_to c.user.name, user_path(c.user.id), class: "text-decoration-none" %></div>
+    <div class="border-bottom mt-2"></div>
+  <% end %>
+</div>

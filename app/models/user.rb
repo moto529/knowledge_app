@@ -14,6 +14,8 @@ class User < ApplicationRecord
 
   has_many :favorites, dependent: :destroy
   has_many :favorite_knowledges, through: :favorites, source: :knowledge
+  
+  has_many :comments, dependent: :destroy
 
   mount_uploader :profile_image, ProfileImageUploader
 

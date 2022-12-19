@@ -10,11 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_12_114354) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_18_093801) do
   create_table "categories", charset: "utf8mb4", force: :cascade do |t|
     t.string "category_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "knowledge_id", null: false
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["knowledge_id"], name: "index_comments_on_knowledge_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "favorites", charset: "utf8mb4", force: :cascade do |t|
@@ -35,6 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_12_114354) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "user_uid"
     t.index ["category_id"], name: "index_knowledges_on_category_id"
     t.index ["user_id"], name: "index_knowledges_on_user_id"
   end
@@ -64,6 +75,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_12_114354) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "knowledges"
+  add_foreign_key "comments", "users"
   add_foreign_key "favorites", "knowledges"
   add_foreign_key "favorites", "users"
   add_foreign_key "knowledges", "categories"

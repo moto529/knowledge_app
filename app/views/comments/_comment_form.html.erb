@@ -1,0 +1,18 @@
+<div class="text-danger text-center mt-2">
+  <%= render "layouts/error_messages", model: @comment %>
+</div>
+<%= form_with model: [@knowledge , @comment], local: true do |f| %>
+
+  <div class="offset-2 col-8 mt-2">
+    <%= f.label :comment, "コメント", class: "form-label fw-bolder" %>
+  </div>
+  
+  <div class="offset-2 col-8">
+    <%= f.text_area :comment, class: "form-control", rows:"2" %>
+  </div>
+  
+  <div class="text-center my-2">
+    <%= f.submit "Submit", class: "btn btn-outline-success" %>
+  </div>
+
+<% end %>

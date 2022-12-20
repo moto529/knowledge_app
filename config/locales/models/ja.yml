@@ -5,6 +5,7 @@ ja:
     attributes:
       user:
         introduction: プロフィール文
+        profile_image: プロフィール画像
       category:
         category_name: カテゴリー名
       knowledge:
@@ -14,6 +15,8 @@ ja:
         category_id: カテゴリー
         category: カテゴリー
         knowledge_image: 写真
+      comment:
+        comment: コメント
       attributes:
         created_at: 作成日
         updated_at: 更新日

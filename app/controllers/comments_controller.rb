@@ -32,8 +32,10 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment.destroy
-    redirect_to request.referer, notice: "コメントを削除しました"
+    if @comment.user == current_user
+      @comment.destroy
+      redirect_to request.referer, notice: "コメントを削除しました"
+    end
   end
   
   private

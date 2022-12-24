@@ -1,0 +1,8 @@
+<div>
+  <% notifications = @notifications.where.not(visitor_id: current_user.id) %>
+  <% if notifications.exists? %>
+    <%= render partial: "notification", collection: @notifications %>
+  <% else %>
+    <div>通知はありません</div>
+  <% end %>
+</div>

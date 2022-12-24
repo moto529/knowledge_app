@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
     @comment = @knowledge.comments.new(comment_params)
     @comment.user_id = current_user.id
     if @comment.save
+      @knowledge.create_notification_comment!(current_user, @comment.id)
       redirect_to knowledge_path(@knowledge), notice: "コメントを作成しました"
     else
       render "comments/new", status: :unprocessable_entity

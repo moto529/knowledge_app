@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_18_093801) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_21_061530) do
   create_table "categories", charset: "utf8mb4", force: :cascade do |t|
     t.string "category_name"
     t.datetime "created_at", null: false
@@ -48,6 +48,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_18_093801) do
     t.string "user_uid"
     t.index ["category_id"], name: "index_knowledges_on_category_id"
     t.index ["user_id"], name: "index_knowledges_on_user_id"
+  end
+
+  create_table "notifications", charset: "utf8mb4", force: :cascade do |t|
+    t.integer "visitor_id", null: false
+    t.integer "visited_id", null: false
+    t.integer "knowledge_id"
+    t.integer "comment_id"
+    t.string "action", default: "", null: false
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_notifications_on_comment_id"
+    t.index ["knowledge_id"], name: "index_notifications_on_knowledge_id"
+    t.index ["visited_id"], name: "index_notifications_on_visited_id"
+    t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end
 
   create_table "relationships", charset: "utf8mb4", force: :cascade do |t|

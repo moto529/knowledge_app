@@ -11,6 +11,15 @@
         </li>
       </ul>
       <div class="d-flex dropdown nav-item">
+        <% if unchecked_notifications.any? %>
+          <%= link_to notifications_path, class: "me-4 text-decoration-none" do %>
+            <%= image_tag "bell.png", :size =>'25x25' %><span style="color: orange;">●</span>
+          <% end %>
+        <% else %>
+          <%= link_to notifications_path, class: "me-2" do %>
+            <%= image_tag "bell.png", :size =>'25x25' %>
+          <% end %>
+        <% end %>
         <a class="nav-link dropdown-toggle pe-3", href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           <%= current_user.name %>
         </a>

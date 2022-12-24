@@ -1,0 +1,10 @@
+<div class="shadow-lg offset-4 col-4 mt-5 py-3 border rounded">
+  <%= link_to notification.visitor.name, user_path(notification.visitor), class: "text-decoration-none fw-bolder ms-5", style: "color: #33FF00;" %>さんが、
+  <% case notification.action when 'follow' then %>
+   あなたをフォローしました!
+  <% when 'comment' then %>
+    <% if notification.knowledge.user_id == notification.visited.id %>
+      <%= link_to "あなたの投稿", notification.knowledge, class: "text-decoration-none" %>にコメントしました!
+    <% end %>
+  <% end %>
+</div>

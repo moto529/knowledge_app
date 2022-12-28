@@ -3,7 +3,7 @@
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :omniauthable, omniauth_providers: %i[line]
+         :omniauthable, omniauth_providers: %i[line google_oauth2]
   # フォロー機能の関連付け
   has_many :knowledges, dependent: :destroy
   has_many :relationships, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy
@@ -76,6 +76,13 @@ class User < ApplicationRecord
   def set_values_by_raw_info(raw_info)
     self.raw_info = raw_info.to_json
     self.save!
+  end
+  
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+    end
   end
   
   def create_notification_follow!(current_user)

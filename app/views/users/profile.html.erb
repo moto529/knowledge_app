@@ -17,7 +17,7 @@
     </div>
     <div class="fw-bolder mt-1 ms-4"><%= @user.name %></div>
     <% if @user.birth_date.nil? %>
-      <div class="mt-2 ms-3 col-5">誕生日を設定してください</div>
+      <div class="mt-2 ms-3 col-5" style="font-size: 13px;">誕生日を設定されていません</div>
     <% else %>
       <div class="mt-2 ms-3 col-5">Birthday : <%= @user.birth_date.strftime("%Y年%m月%d日") %></div>
     <% end %>

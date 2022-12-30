@@ -4,6 +4,12 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user, only: %i[show edit update profile set_q]
   before_action :set_q, only: [:profile]
+  before_action :set_q_user, only: %i[index result]
+  
+  def index
+    @users = @q.result.page(params[:page])
+  end
+  
   def show
     @user_knowledges = @user.knowledges.order(created_at: 'desc').page(params[:page])
     return unless @user == current_user
@@ -36,11 +42,19 @@ class UsersController < ApplicationController
   def favorite
     @favorites = current_user.favorite_knowledges.includes(:user).order(created_at: 'desc').page(params[:page])
   end
+  
+  def result
+    @users = @q.result.page(params[:page])
+  end
 
   private
 
   def set_q
     @q = @user.knowledges.ransack(params[:q])
+  end
+  
+  def set_q_user
+    @q = User.ransack(params[:q])
   end
 
   def set_user

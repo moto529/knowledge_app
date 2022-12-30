@@ -11,12 +11,13 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
 
-  resources :users, only: %i[show edit update] do
+  resources :users, only: %i[index show edit update] do
     resources :relationships, only: %i[create destroy]
     get 'profile', on: :member
     get 'followings' => 'relationships#followings'
     get 'followers' => 'relationships#followers'
     get :favorite, on: :collection
+    get :result, on: :collection
   end
   resources :categories, only: %i[index show create]
   resources :knowledges do

@@ -1,13 +1,16 @@
 <% if user_signed_in? %>
   <nav class="navbar navbar-expand navbar-light" style="background-color: #DAF981;">
     <div class="container-fluid">
-      <%= link_to "My index", root_path, class: "navbar-brand py-2 ms-4" %>
+      <%= link_to "My index", root_path, class: "navbar-brand py-2 ms-2" %>
       <ul class="navbar-nav me-auto mb-lg-0">
         <li class="nav-item">
-          <%= link_to "Category", categories_path, class: "nav-link active ms-3" %>
+          <%= link_to "Category", categories_path, class: "nav-link active ms-2" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Knowledge", knowledges_path, class: "nav-link active ms-3" %>
+          <%= link_to "Knowledge", knowledges_path, class: "nav-link active ms-2" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Favorite", favorite_users_path, class: "nav-link active ms-2" %>
         </li>
       </ul>
       <div class="d-flex dropdown nav-item">
@@ -29,7 +32,7 @@
         </a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
           <li><%= link_to "プロフィール", profile_user_path(current_user.id), class: "dropdown-item" %></li>
-          <li><%= link_to "お気に入り", favorite_users_path, class: "dropdown-item" %></li>
+          <li><%= link_to "ユーザー検索", users_path, class: "dropdown-item" %></li>
           <li><%= link_to "登録情報編集", edit_user_registration_path, class: "dropdown-item" %></li>
           <li><%= link_to "ログアウト", users_sign_out_path, class: "dropdown-item" %></li>
         </ul>

@@ -22,7 +22,11 @@
         <span class="mb-2 ms-2"><%= link_to "＋", user_relationships_path(@user.id), data: { turbo_method: :post }, class: "btn btn-outline-primary btn-sm" %></span>
       <% end %>
     </div>
-    <div class="mt-2 ms-3">Birthday : <%= @user.birth_date.strftime("%Y年%m月%d日") %></div>
+    <% if @user.birth_date.nil? %>
+      <div class="mt-2 ms-3 col-5" style="font-size: 13px;">誕生日を設定されていません</div>
+    <% else %>
+      <div class="mt-2 ms-3 col-5">Birthday : <%= @user.birth_date.strftime("%Y年%m月%d日") %></div>
+    <% end %>
     <div class="mb-3"><%= render "relationships/follow_list" %></div>
   </div>
   <div>
